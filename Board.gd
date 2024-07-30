@@ -17,7 +17,8 @@ func init_game():
 	var p1 = get_node("Player 1")
 	players["Player 1"] = p1
 	p1.set_sign(get_parent().get_node("Player Sign 1"))
-	p1.set_skin(1)
+	p1.light_strength = 4
+	p1.set_player_id(1)
 	p1.set_pos(Vector2i(7, 5))
 	p1.set_orientation(Player.directions.LEFT)
 	p1.prev_pos = p1.pos
@@ -29,7 +30,7 @@ func init_game():
 	var p2 = get_node("Player 2")
 	players["Player 2"] = p2
 	p2.set_sign(get_parent().get_node("Player Sign 2"))
-	p2.set_skin(2)
+	p2.set_player_id(2)
 	p2.set_pos(Vector2i(7, 4))
 	p2.set_orientation(Player.directions.DOWN)
 	p2.prev_pos = p2.pos
@@ -41,7 +42,7 @@ func init_game():
 	var p3 = get_node("Player 3")
 	players["Player 3"] = p3
 	p3.set_sign(get_parent().get_node("Player Sign 3"))
-	p3.set_skin(3)
+	p3.set_player_id(3)
 	p3.set_pos(Vector2i(6, 4))
 	p3.set_orientation(Player.directions.LEFT)
 	p3.prev_pos = p3.pos
@@ -67,7 +68,8 @@ func init_game():
 	
 	monsters.append(get_node("Monster"))
 	monsters[0].set_pos(Vector2i(5, 6))
-	monsters[0].visible = true # TODO
+	monsters[0].visible = false
+	#monsters[0].visible = true # TODO
 	
 	place_items_and_monster()
 	update_items()
@@ -222,11 +224,13 @@ func make_move():
 			
 	for p in players:
 		for monster in monsters:
-			monster.visible = false
+			#monster.visible = false
 			for tile in players[p].get_lit_area():
 				if monster.pos.x == tile.x && monster.pos.y == tile.y:
-					monster.visible = true
-			monster.visible = true # TODO
+					#monster.visible = true
+					#print("monster!" + str(monster.pos))
+					pass
+			#monster.visible = true # TODO
 	select(get_node("FloorGrid").selected)
 	
 	if players.size() == 0:

@@ -28,6 +28,13 @@ texture = ExtResource("1_chc0n")
 offset = Vector2(0, -55)
 texture_scale = 0.8
 
+[node name="PointLight2D-strong" type="PointLight2D" parent="."]
+scale = Vector2(1, 1.286)
+shadow_enabled = true
+texture = ExtResource("1_chc0n")
+offset = Vector2(0, -55)
+texture_scale = 0.8
+
 [node name="Hit Light" type="PointLight2D" parent="."]
 scale = Vector2(0.04, 0.04)
 color = Color(0.780392, 0, 0, 1)

@@ -28,16 +28,31 @@ func _ready():
 func _process(delta):
 	pass
 
-func set_skin(id: int):
+func set_player_id(id: int):
 	get_node("Indie-Hat").visible = false
 	get_node("Military-Hat").visible = false
 	get_node("Bowler-Hat").visible = false
+	get_node("PointLight2D").visible = false
+	get_node("PointLight2D-strong").visible = false
 	if id == 1:
 		get_node("Indie-Hat").visible = true
+		get_node("PointLight2D-strong").visible = true
 	elif id == 2:
 		get_node("Military-Hat").visible = true
+		get_node("PointLight2D").visible = true
+		max_health = 14
+		health = 14
+		max_sanity = 6
+		sanity = 6
 	else:
 		get_node("Bowler-Hat").visible = true
+		get_node("PointLight2D").visible = true
+		max_health = 6
+		health = 6
+		max_sanity = 14
+		sanity = 14
+	update_sign()
+
 
 func set_sign(sprite: Sprite2D):
 	sign = sprite
@@ -95,12 +110,16 @@ func set_orientation(new_orientation):
 	prev_pos = pos
 	if orientation == directions.UP:
 		get_node("PointLight2D").set_rotation_degrees(0)
+		get_node("PointLight2D-strong").set_rotation_degrees(0)
 	elif orientation == directions.DOWN:
 		get_node("PointLight2D").set_rotation_degrees(180)
+		get_node("PointLight2D-strong").set_rotation_degrees(180)
 	elif orientation == directions.LEFT:
 		get_node("PointLight2D").set_rotation_degrees(270)
+		get_node("PointLight2D-strong").set_rotation_degrees(270)
 	elif orientation == directions.RIGHT:
 		get_node("PointLight2D").set_rotation_degrees(90)
+		get_node("PointLight2D-strong").set_rotation_degrees(90)
 
 func move_up():
 	var new_pos = Vector2i(pos.x, pos.y - 1)
