@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://78cj2duvfo06"]
+
+[ext_resource type="Texture2D" uid="uid://cbiqve52f3f34" path="res://graphics/Skull.png" id="1_xskpg"]
+[ext_resource type="Texture2D" uid="uid://2unpkxsmcguo" path="res://graphics/light.png" id="2_sbi5r"]
+
+[node name="Skull" type="Node2D"]
+
+[node name="Skull" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_xskpg")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.025, 0.025)
+color = Color(0.572549, 0, 0, 1)
+energy = 3.0
+texture = ExtResource("2_sbi5r")

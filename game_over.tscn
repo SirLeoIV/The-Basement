@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://w4rkacyqydaq"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_anpc0"]
+[ext_resource type="Texture2D" uid="uid://byspmj2ce3b22" path="res://graphics/black.png" id="2_qpo4g"]
+[ext_resource type="FontFile" uid="uid://gcwj81hglb6l" path="res://minimal3x5.ttf" id="3_x5hkg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqsju"]
+line_spacing = 5.0
+font = ExtResource("3_x5hkg")
+font_size = 40
+
+[node name="Game over" type="Node2D"]
+script = ExtResource("1_anpc0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(52, 40)
+texture = ExtResource("2_qpo4g")
+centered = false
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 11.0
+offset_right = 829.0
+offset_bottom = 626.0
+text = "
+
+GAME OVER!
+
+You lost everyone!
+
+This adventure will add to the stories people tell about this cursed place."
+label_settings = SubResource("LabelSettings_qqsju")
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="."]
+offset_left = 380.0
+offset_top = 550.0
+offset_right = 460.0
+offset_bottom = 595.0
+text = "RETRY"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
