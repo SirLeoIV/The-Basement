@@ -17,6 +17,7 @@ func init_game():
 	var p1 = get_node("Player 1")
 	players["Player 1"] = p1
 	p1.set_sign(get_parent().get_node("Player Sign 1"))
+	p1.set_skin(1)
 	p1.set_pos(Vector2i(7, 5))
 	p1.set_orientation(Player.directions.LEFT)
 	p1.prev_pos = p1.pos
@@ -28,6 +29,7 @@ func init_game():
 	var p2 = get_node("Player 2")
 	players["Player 2"] = p2
 	p2.set_sign(get_parent().get_node("Player Sign 2"))
+	p2.set_skin(2)
 	p2.set_pos(Vector2i(7, 4))
 	p2.set_orientation(Player.directions.DOWN)
 	p2.prev_pos = p2.pos
@@ -39,6 +41,7 @@ func init_game():
 	var p3 = get_node("Player 3")
 	players["Player 3"] = p3
 	p3.set_sign(get_parent().get_node("Player Sign 3"))
+	p3.set_skin(3)
 	p3.set_pos(Vector2i(6, 4))
 	p3.set_orientation(Player.directions.LEFT)
 	p3.prev_pos = p3.pos

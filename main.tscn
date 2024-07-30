@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://k5sile8kou88"]
+[gd_scene load_steps=38 format=3 uid="uid://k5sile8kou88"]
 
 [ext_resource type="Texture2D" uid="uid://dpqni4e34wnsr" path="res://graphics/Wall-Background.png" id="1_15v5v"]
 [ext_resource type="Script" path="res://Board.gd" id="1_gf8bi"]
@@ -22,7 +22,10 @@
 [ext_resource type="PackedScene" uid="uid://x4ctvne50jtd" path="res://monster.tscn" id="17_pg8hj"]
 [ext_resource type="Texture2D" uid="uid://bsbgklkjhlamr" path="res://graphics/stone-sign-square.png" id="19_g28sy"]
 [ext_resource type="PackedScene" uid="uid://rysvqe6xyesh" path="res://welcome_screen.tscn" id="22_3u1k4"]
+[ext_resource type="Texture2D" uid="uid://c6q27cewxunnb" path="res://graphics/Indie-Hat.png" id="22_os0m2"]
+[ext_resource type="Texture2D" uid="uid://h74mq4jaqx0y" path="res://graphics/Military-Hat.png" id="23_1hchu"]
 [ext_resource type="PackedScene" uid="uid://bw8awsq3p38cn" path="res://how_to_play.tscn" id="23_7x0ge"]
+[ext_resource type="Texture2D" uid="uid://fwhud8yfvab7" path="res://graphics/Bowler-Hat.png" id="24_dvxq3"]
 [ext_resource type="PackedScene" uid="uid://w4rkacyqydaq" path="res://game_over.tscn" id="24_mmx3m"]
 [ext_resource type="PackedScene" uid="uid://dvb2k0vik0bj6" path="res://winning_screen.tscn" id="25_bi1r3"]
 
@@ -186,7 +189,7 @@ metadata/_edit_lock_ = true
 [node name="Player 1" parent="Board" instance=ExtResource("6_sj1nk")]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(17, 214)
+position = Vector2(205.5, 195.5)
 
 [node name="Player 2" parent="Board" instance=ExtResource("6_sj1nk")]
 light_mask = 2
@@ -196,7 +199,7 @@ position = Vector2(205.5, 109.5)
 [node name="Player 3" parent="Board" instance=ExtResource("6_sj1nk")]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(331.5, 183.5)
+position = Vector2(26.5, 191.5)
 
 [node name="Item-bottle" type="Sprite2D" parent="Board"]
 position = Vector2(17, 301)
@@ -239,6 +242,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("19_g28sy")
 
 [node name="Title" type="Label" parent="Player Sign 1"]
+visible = false
 offset_left = -140.0
 offset_top = -120.0
 offset_right = 140.0
@@ -280,12 +284,18 @@ color = Color(0, 1, 0, 1)
 energy = 0.5
 texture = ExtResource("5_pd8oe")
 
+[node name="Sprite2D" type="Sprite2D" parent="Player Sign 1"]
+position = Vector2(-10, -52)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("22_os0m2")
+
 [node name="Player Sign 2" type="Sprite2D" parent="."]
 position = Vector2(85, 300)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("19_g28sy")
 
 [node name="Title" type="Label" parent="Player Sign 2"]
+visible = false
 offset_left = -140.0
 offset_top = -120.0
 offset_right = 140.0
@@ -327,12 +337,18 @@ color = Color(0, 1, 0, 1)
 energy = 0.5
 texture = ExtResource("5_pd8oe")
 
+[node name="Sprite2D" type="Sprite2D" parent="Player Sign 2"]
+position = Vector2(-10, -52)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("23_1hchu")
+
 [node name="Player Sign 3" type="Sprite2D" parent="."]
 position = Vector2(85, 480)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("19_g28sy")
 
 [node name="Title" type="Label" parent="Player Sign 3"]
+visible = false
 offset_left = -140.0
 offset_top = -120.0
 offset_right = 140.0
@@ -373,6 +389,11 @@ scale = Vector2(0.5, 0.5)
 color = Color(0, 1, 0, 1)
 energy = 0.5
 texture = ExtResource("5_pd8oe")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player Sign 3"]
+position = Vector2(-10, -52)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("24_dvxq3")
 
 [node name="How to play button" type="Button" parent="."]
 offset_left = 25.0

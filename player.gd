@@ -28,6 +28,17 @@ func _ready():
 func _process(delta):
 	pass
 
+func set_skin(id: int):
+	get_node("Indie-Hat").visible = false
+	get_node("Military-Hat").visible = false
+	get_node("Bowler-Hat").visible = false
+	if id == 1:
+		get_node("Indie-Hat").visible = true
+	elif id == 2:
+		get_node("Military-Hat").visible = true
+	else:
+		get_node("Bowler-Hat").visible = true
+
 func set_sign(sprite: Sprite2D):
 	sign = sprite
 
