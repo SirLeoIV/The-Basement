@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://k5sile8kou88"]
+[gd_scene load_steps=42 format=3 uid="uid://k5sile8kou88"]
 
 [ext_resource type="Texture2D" uid="uid://dpqni4e34wnsr" path="res://graphics/Wall-Background.png" id="1_15v5v"]
 [ext_resource type="Script" path="res://Board.gd" id="1_gf8bi"]
@@ -7,13 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://dm1ga5quk1kni" path="res://graphics/stone-sign-extra-long.png" id="2_7bbse"]
 [ext_resource type="Texture2D" uid="uid://b7ho2nagik02g" path="res://graphics/stone-sign-slim.png" id="2_fjxjf"]
 [ext_resource type="Script" path="res://floorGrid.gd" id="3_g6dtf"]
+[ext_resource type="FontFile" uid="uid://ljejabf1qw5s" path="res://pixel-font-with-slash.otf" id="4_4qd81"]
 [ext_resource type="Texture2D" uid="uid://7mab08yy6dbw" path="res://graphics/Item-Bottle.png" id="4_ai4s6"]
 [ext_resource type="Texture2D" uid="uid://2unpkxsmcguo" path="res://graphics/light.png" id="5_pd8oe"]
 [ext_resource type="Texture2D" uid="uid://bg6f4c2kw8prh" path="res://graphics/hover-tile.png" id="5_qrqx5"]
-[ext_resource type="Texture2D" uid="uid://w4vfsgnyogfw" path="res://graphics/Glass-Of-Honey.png" id="5_wvk1v"]
 [ext_resource type="PackedScene" uid="uid://bxpd3m8cl1int" path="res://player.tscn" id="6_sj1nk"]
 [ext_resource type="Texture2D" uid="uid://doqpuy6drgdcs" path="res://graphics/Recipe.png" id="6_uexrn"]
 [ext_resource type="Texture2D" uid="uid://bkbgii8cvch8d" path="res://graphics/Walls.png" id="7_h3mss"]
+[ext_resource type="Texture2D" uid="uid://bdxc12s232vsy" path="res://graphics/Item-Gems.png" id="8_43esu"]
 [ext_resource type="PackedScene" uid="uid://c1fwa3ykfbx03" path="res://controls.tscn" id="9_ei3g4"]
 [ext_resource type="FontFile" uid="uid://gcwj81hglb6l" path="res://minimal3x5.ttf" id="10_47xky"]
 [ext_resource type="Texture2D" uid="uid://sa6vgwow16s" path="res://graphics/FloorPlanWithStairs.png" id="10_y1hjg"]
@@ -32,7 +33,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_h8wys"]
 line_spacing = 10.0
-font = ExtResource("10_47xky")
+font = ExtResource("4_4qd81")
 font_size = 46
 
 [sub_resource type="LabelSettings" id="LabelSettings_8l0jr"]
@@ -100,27 +101,29 @@ label_settings = SubResource("LabelSettings_h8wys")
 
 [node name="Item-bottle" type="Sprite2D" parent="Items-Sign"]
 position = Vector2(0, -120)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_ai4s6")
 
 [node name="Light" type="PointLight2D" parent="Items-Sign/Item-bottle"]
-scale = Vector2(0.18, 0.18)
-texture = ExtResource("5_pd8oe")
-
-[node name="Glass-of-honey" type="Sprite2D" parent="Items-Sign"]
-position = Vector2(0, 200)
-texture = ExtResource("5_wvk1v")
-
-[node name="Light" type="PointLight2D" parent="Items-Sign/Glass-of-honey"]
-scale = Vector2(0.18, 0.18)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_pd8oe")
 
 [node name="Recipe" type="Sprite2D" parent="Items-Sign"]
-position = Vector2(-9.15527e-05, 40.0001)
-scale = Vector2(0.9, 0.9)
+position = Vector2(0, 40.0001)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_uexrn")
 
 [node name="Light" type="PointLight2D" parent="Items-Sign/Recipe"]
-scale = Vector2(0.18, 0.18)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_pd8oe")
+
+[node name="Gems" type="Sprite2D" parent="Items-Sign"]
+position = Vector2(0, 200)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_43esu")
+
+[node name="Light" type="PointLight2D" parent="Items-Sign/Gems"]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_pd8oe")
 
 [node name="Moves-Sign" type="Sprite2D" parent="."]
@@ -212,19 +215,19 @@ position = Vector2(26.5, 191.5)
 
 [node name="Item-bottle" type="Sprite2D" parent="Board"]
 position = Vector2(17, 301)
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.05, 0.05)
 texture = ExtResource("4_ai4s6")
 script = ExtResource("15_ld5tn")
 
-[node name="Glass-of-honey" type="Sprite2D" parent="Board"]
+[node name="Item-Gems" type="Sprite2D" parent="Board"]
 position = Vector2(19, 144)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("5_wvk1v")
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("8_43esu")
 script = ExtResource("15_ld5tn")
 
-[node name="Recipe" type="Sprite2D" parent="Board"]
+[node name="Item-Recipe" type="Sprite2D" parent="Board"]
 position = Vector2(19, 18)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.05, 0.05)
 texture = ExtResource("6_uexrn")
 script = ExtResource("15_ld5tn")
 
@@ -262,17 +265,17 @@ label_settings = SubResource("LabelSettings_h8wys")
 
 [node name="Sanity" type="Label" parent="Player Sign 1"]
 offset_left = -140.0
-offset_top = 12.0
+offset_top = 22.0
 offset_right = 140.0
-offset_bottom = 77.0
+offset_bottom = 92.0
 text = "SANITY: 10/10"
 label_settings = SubResource("LabelSettings_h8wys")
 
 [node name="Health" type="Label" parent="Player Sign 1"]
 offset_left = -140.0
-offset_top = 72.0
+offset_top = 82.0
 offset_right = 140.0
-offset_bottom = 137.0
+offset_bottom = 152.0
 text = "HEALTH: 10/10"
 label_settings = SubResource("LabelSettings_h8wys")
 
@@ -346,17 +349,17 @@ label_settings = SubResource("LabelSettings_h8wys")
 
 [node name="Sanity" type="Label" parent="Player Sign 2"]
 offset_left = -140.0
-offset_top = 12.0
+offset_top = 22.0
 offset_right = 140.0
-offset_bottom = 77.0
+offset_bottom = 87.0
 text = "SANITY: 10/10"
 label_settings = SubResource("LabelSettings_h8wys")
 
 [node name="Health" type="Label" parent="Player Sign 2"]
 offset_left = -140.0
-offset_top = 72.0
+offset_top = 82.0
 offset_right = 140.0
-offset_bottom = 137.0
+offset_bottom = 147.0
 text = "HEALTH: 10/10"
 label_settings = SubResource("LabelSettings_h8wys")
 
@@ -436,17 +439,17 @@ label_settings = SubResource("LabelSettings_h8wys")
 
 [node name="Sanity" type="Label" parent="Player Sign 3"]
 offset_left = -140.0
-offset_top = 12.0
+offset_top = 22.0
 offset_right = 140.0
-offset_bottom = 77.0
+offset_bottom = 87.0
 text = "SANITY: 10/10"
 label_settings = SubResource("LabelSettings_h8wys")
 
 [node name="Health" type="Label" parent="Player Sign 3"]
 offset_left = -140.0
-offset_top = 72.0
+offset_top = 82.0
 offset_right = 140.0
-offset_bottom = 137.0
+offset_bottom = 147.0
 text = "HEALTH: 10/10"
 label_settings = SubResource("LabelSettings_h8wys")
 

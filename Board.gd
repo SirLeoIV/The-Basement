@@ -51,15 +51,15 @@ func init_game():
 	p3.sign.get_node("Selected").visible = false
 	p3.sign.get_node("Safe").visible = false
 	
-	set_item_gray(get_parent().get_node("Items-Sign/Glass-of-honey"))
+	set_item_gray(get_parent().get_node("Items-Sign/Gems"))
 	set_item_gray(get_parent().get_node("Items-Sign/Recipe"))
 	set_item_gray(get_parent().get_node("Items-Sign/Item-bottle"))
 	
 	# place items on board
-	var glass_item = get_node("Glass-of-honey")
+	var glass_item = get_node("Item-Gems")
 	items["Glass"] = glass_item
 	glass_item.type = Item.types.GLASS
-	var recipe_item = get_node("Recipe")
+	var recipe_item = get_node("Item-Recipe")
 	items["Recipe"] = recipe_item
 	recipe_item.type = Item.types.RECIPE
 	var bottle_item = get_node("Item-bottle")
@@ -109,7 +109,7 @@ func random_spot_in_room(room: int):
 func update_items():
 	for i in items:
 		items[i].visible = false
-		items[i].visible = true # TODO
+		#items[i].visible = true # TODO
 	for p in players:
 		for i in items:
 			var tiles = players[p].get_lit_area()
@@ -145,7 +145,7 @@ func make_move():
 			if item.type == Item.types.BOTTLE:
 				set_item_color(get_parent().get_node("Items-Sign/Item-bottle"))
 			elif item.type == Item.types.GLASS:
-				set_item_color(get_parent().get_node("Items-Sign/Glass-of-honey"))
+				set_item_color(get_parent().get_node("Items-Sign/Gems"))
 			elif item.type == Item.types.RECIPE:
 				set_item_color(get_parent().get_node("Items-Sign/Recipe"))
 			

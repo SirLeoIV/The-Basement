@@ -7,3 +7,6 @@
 script = ExtResource("1_o13yy")
 
 [node name="Main" parent="." instance=ExtResource("2_dk5u4")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0

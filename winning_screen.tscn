@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://winning_screen.gd" id="1_h48k3"]
 [ext_resource type="Texture2D" uid="uid://byspmj2ce3b22" path="res://graphics/black.png" id="1_l04cu"]
-[ext_resource type="FontFile" uid="uid://gcwj81hglb6l" path="res://minimal3x5.ttf" id="2_ndj38"]
+[ext_resource type="FontFile" uid="uid://ljejabf1qw5s" path="res://pixel-font-with-slash.otf" id="3_ueyps"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qk7xa"]
 line_spacing = 5.0
-font = ExtResource("2_ndj38")
+font = ExtResource("3_ueyps")
 font_size = 40
 
 [node name="Winning Screen" type="Node2D"]
