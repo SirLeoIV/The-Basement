@@ -8,9 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://fwhud8yfvab7" path="res://graphics/Bowler-Hat.png" id="4_jf45o"]
 
 [node name="Player" type="Node2D"]
+position = Vector2(48, 80)
 script = ExtResource("1_khxcn")
+metadata/player_id = 1
 
 [node name="Military-Hat" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_4s105")
 
@@ -19,10 +22,12 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("3_7q1hp")
 
 [node name="Bowler-Hat" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("4_jf45o")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 shadow_enabled = true
 texture = ExtResource("1_chc0n")
 offset = Vector2(0, -55)

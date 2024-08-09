@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://k5sile8kou88"]
+[gd_scene load_steps=36 format=3 uid="uid://k5sile8kou88"]
 
 [ext_resource type="Texture2D" uid="uid://dpqni4e34wnsr" path="res://graphics/Wall-Background.png" id="1_15v5v"]
 [ext_resource type="Script" path="res://Board.gd" id="1_gf8bi"]
@@ -21,14 +21,10 @@
 [ext_resource type="Script" path="res://Item.gd" id="15_ld5tn"]
 [ext_resource type="PackedScene" uid="uid://78cj2duvfo06" path="res://skull.tscn" id="17_7p25y"]
 [ext_resource type="PackedScene" uid="uid://x4ctvne50jtd" path="res://monster.tscn" id="17_pg8hj"]
-[ext_resource type="Texture2D" uid="uid://bsbgklkjhlamr" path="res://graphics/stone-sign-square.png" id="19_g28sy"]
 [ext_resource type="PackedScene" uid="uid://rysvqe6xyesh" path="res://welcome_screen.tscn" id="22_3u1k4"]
-[ext_resource type="Texture2D" uid="uid://c6q27cewxunnb" path="res://graphics/Indie-Hat.png" id="22_os0m2"]
-[ext_resource type="Texture2D" uid="uid://h74mq4jaqx0y" path="res://graphics/Military-Hat.png" id="23_1hchu"]
+[ext_resource type="PackedScene" uid="uid://cx0k4kq5n1e4l" path="res://player_sign.tscn" id="22_qavl6"]
 [ext_resource type="PackedScene" uid="uid://bw8awsq3p38cn" path="res://how_to_play.tscn" id="23_7x0ge"]
-[ext_resource type="Texture2D" uid="uid://fwhud8yfvab7" path="res://graphics/Bowler-Hat.png" id="24_dvxq3"]
 [ext_resource type="PackedScene" uid="uid://w4rkacyqydaq" path="res://game_over.tscn" id="24_mmx3m"]
-[ext_resource type="Script" path="res://player_sign.gd" id="24_pqouu"]
 [ext_resource type="PackedScene" uid="uid://dvb2k0vik0bj6" path="res://winning_screen.tscn" id="25_bi1r3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h8wys"]
@@ -67,14 +63,6 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_qkgf1")
 sources/1 = SubResource("TileSetAtlasSource_eshmr")
-
-[sub_resource type="LabelSettings" id="LabelSettings_jjugd"]
-line_spacing = 12.0
-font = ExtResource("10_47xky")
-font_size = 22
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_stxxm"]
-size = Vector2(300, 306)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ow40h")
@@ -201,17 +189,19 @@ metadata/_edit_lock_ = true
 [node name="Player 1" parent="Board" instance=ExtResource("6_sj1nk")]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(205.5, 195.5)
+position = Vector2(239.2, 240)
 
 [node name="Player 2" parent="Board" instance=ExtResource("6_sj1nk")]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(205.5, 109.5)
+position = Vector2(240, 144)
+metadata/player_id = 2
 
 [node name="Player 3" parent="Board" instance=ExtResource("6_sj1nk")]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(26.5, 191.5)
+position = Vector2(204, 208)
+metadata/player_id = 3
 
 [node name="Item-bottle" type="Sprite2D" parent="Board"]
 position = Vector2(17, 301)
@@ -248,257 +238,19 @@ texture = ExtResource("5_pd8oe")
 [node name="Controls" parent="." instance=ExtResource("9_ei3g4")]
 position = Vector2(1007, 93)
 
-[node name="Player Sign 1" type="Sprite2D" parent="."]
+[node name="Info Explorer" parent="." instance=ExtResource("22_qavl6")]
 position = Vector2(85, 120)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("19_g28sy")
-script = ExtResource("24_pqouu")
 
-[node name="Title" type="Label" parent="Player Sign 1"]
-visible = false
-offset_left = -140.0
-offset_top = -120.0
-offset_right = 140.0
-offset_bottom = -55.0
-text = "PLAYER 1:"
-label_settings = SubResource("LabelSettings_h8wys")
-
-[node name="Sanity" type="Label" parent="Player Sign 1"]
-offset_left = -140.0
-offset_top = 22.0
-offset_right = 140.0
-offset_bottom = 92.0
-text = "SANITY: 10/10"
-label_settings = SubResource("LabelSettings_h8wys")
-
-[node name="Health" type="Label" parent="Player Sign 1"]
-offset_left = -140.0
-offset_top = 82.0
-offset_right = 140.0
-offset_bottom = 152.0
-text = "HEALTH: 10/10"
-label_settings = SubResource("LabelSettings_h8wys")
-
-[node name="Selected" type="PointLight2D" parent="Player Sign 1"]
-scale = Vector2(0.5, 0.5)
-color = Color(0.729412, 0.807843, 1, 1)
-energy = 0.5
-texture = ExtResource("5_pd8oe")
-
-[node name="Dead" type="PointLight2D" parent="Player Sign 1"]
-scale = Vector2(0.25, 0.25)
-color = Color(1, 0, 0, 1)
-energy = 0.5
-texture = ExtResource("5_pd8oe")
-
-[node name="Safe" type="PointLight2D" parent="Player Sign 1"]
-scale = Vector2(0.5, 0.5)
-color = Color(0, 1, 0, 1)
-energy = 0.5
-texture = ExtResource("5_pd8oe")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player Sign 1"]
-position = Vector2(-10, -52)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("22_os0m2")
-
-[node name="Desciption" type="Sprite2D" parent="Player Sign 1"]
-light_mask = 2
-position = Vector2(490, -16)
-scale = Vector2(2, 2)
-texture = ExtResource("2_fjxjf")
-
-[node name="Label" type="Label" parent="Player Sign 1/Desciption"]
-light_mask = 2
-offset_left = -129.0
-offset_top = -42.0
-offset_right = 123.0
-offset_bottom = 33.0
-text = "     The explorer!
-Leader of this adventure.
-Has a strong flashlight.
-"
-label_settings = SubResource("LabelSettings_jjugd")
-
-[node name="PointLight2D" type="PointLight2D" parent="Player Sign 1/Desciption"]
-scale = Vector2(0.5, 0.2)
-color = Color(0.454902, 0.454902, 0.454902, 1)
-range_item_cull_mask = 2
-texture = ExtResource("5_pd8oe")
-
-[node name="Area2D" type="Area2D" parent="Player Sign 1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Sign 1/Area2D"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_stxxm")
-
-[node name="Player Sign 2" type="Sprite2D" parent="."]
+[node name="Info Guardian" parent="." instance=ExtResource("22_qavl6")]
 position = Vector2(85, 300)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("19_g28sy")
-script = ExtResource("24_pqouu")
+metadata/player_id = 2
 
-[node name="Title" type="Label" parent="Player Sign 2"]
-visible = false
-offset_left = -140.0
-offset_top = -120.0
-offset_right = 140.0
-offset_bottom = -55.0
-text = "PLAYER 1:"
-label_settings = SubResource("LabelSettings_h8wys")
-
-[node name="Sanity" type="Label" parent="Player Sign 2"]
-offset_left = -140.0
-offset_top = 22.0
-offset_right = 140.0
-offset_bottom = 87.0
-text = "SANITY: 10/10"
-label_settings = SubResource("LabelSettings_h8wys")
-
-[node name="Health" type="Label" parent="Player Sign 2"]
-offset_left = -140.0
-offset_top = 82.0
-offset_right = 140.0
-offset_bottom = 147.0
-text = "HEALTH: 10/10"
-label_settings = SubResource("LabelSettings_h8wys")
-
-[node name="Selected" type="PointLight2D" parent="Player Sign 2"]
-scale = Vector2(0.5, 0.5)
-color = Color(0.729412, 0.807843, 1, 1)
-energy = 0.5
-texture = ExtResource("5_pd8oe")
-
-[node name="Dead" type="PointLight2D" parent="Player Sign 2"]
-scale = Vector2(0.25, 0.25)
-color = Color(1, 0, 0, 1)
-energy = 0.5
-texture = ExtResource("5_pd8oe")
-
-[node name="Safe" type="PointLight2D" parent="Player Sign 2"]
-scale = Vector2(0.5, 0.5)
-color = Color(0, 1, 0, 1)
-energy = 0.5
-texture = ExtResource("5_pd8oe")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player Sign 2"]
-position = Vector2(-10, -52)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("23_1hchu")
-
-[node name="Desciption" type="Sprite2D" parent="Player Sign 2"]
-light_mask = 2
-position = Vector2(490, -16)
-scale = Vector2(2, 2)
-texture = ExtResource("2_fjxjf")
-
-[node name="Label" type="Label" parent="Player Sign 2/Desciption"]
-light_mask = 2
-offset_left = -129.0
-offset_top = -42.0
-offset_right = 123.0
-offset_bottom = 33.0
-text = "     The Guardian!
-Strong muscels 
-Weak mind
-"
-label_settings = SubResource("LabelSettings_jjugd")
-
-[node name="PointLight2D" type="PointLight2D" parent="Player Sign 2/Desciption"]
-scale = Vector2(0.5, 0.2)
-color = Color(0.454902, 0.454902, 0.454902, 1)
-range_item_cull_mask = 2
-texture = ExtResource("5_pd8oe")
-
-[node name="Area2D" type="Area2D" parent="Player Sign 2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Sign 2/Area2D"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_stxxm")
-
-[node name="Player Sign 3" type="Sprite2D" parent="."]
+[node name="Info Scolar" parent="." instance=ExtResource("22_qavl6")]
 position = Vector2(85, 480)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("19_g28sy")
-script = ExtResource("24_pqouu")
-
-[node name="Area2D" type="Area2D" parent="Player Sign 3"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Sign 3/Area2D"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_stxxm")
-
-[node name="Title" type="Label" parent="Player Sign 3"]
-visible = false
-offset_left = -140.0
-offset_top = -120.0
-offset_right = 140.0
-offset_bottom = -55.0
-text = "PLAYER 1:"
-label_settings = SubResource("LabelSettings_h8wys")
-
-[node name="Sanity" type="Label" parent="Player Sign 3"]
-offset_left = -140.0
-offset_top = 22.0
-offset_right = 140.0
-offset_bottom = 87.0
-text = "SANITY: 10/10"
-label_settings = SubResource("LabelSettings_h8wys")
-
-[node name="Health" type="Label" parent="Player Sign 3"]
-offset_left = -140.0
-offset_top = 82.0
-offset_right = 140.0
-offset_bottom = 147.0
-text = "HEALTH: 10/10"
-label_settings = SubResource("LabelSettings_h8wys")
-
-[node name="Selected" type="PointLight2D" parent="Player Sign 3"]
-scale = Vector2(0.5, 0.5)
-color = Color(0.729412, 0.807843, 1, 1)
-energy = 0.5
-texture = ExtResource("5_pd8oe")
-
-[node name="Dead" type="PointLight2D" parent="Player Sign 3"]
-scale = Vector2(0.25, 0.25)
-color = Color(1, 0, 0, 1)
-energy = 0.5
-texture = ExtResource("5_pd8oe")
-
-[node name="Safe" type="PointLight2D" parent="Player Sign 3"]
-scale = Vector2(0.5, 0.5)
-color = Color(0, 1, 0, 1)
-energy = 0.5
-texture = ExtResource("5_pd8oe")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player Sign 3"]
-position = Vector2(-10, -52)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("24_dvxq3")
-
-[node name="Desciption" type="Sprite2D" parent="Player Sign 3"]
-light_mask = 2
-position = Vector2(490, -16)
-scale = Vector2(2, 2)
-texture = ExtResource("2_fjxjf")
-
-[node name="Label" type="Label" parent="Player Sign 3/Desciption"]
-light_mask = 2
-offset_left = -129.0
-offset_top = -42.0
-offset_right = 123.0
-offset_bottom = 33.0
-text = "     The scholar!
-Knows things
-Do not leave him alone!
-"
-label_settings = SubResource("LabelSettings_jjugd")
-
-[node name="PointLight2D" type="PointLight2D" parent="Player Sign 3/Desciption"]
-scale = Vector2(0.5, 0.2)
-color = Color(0.454902, 0.454902, 0.454902, 1)
-range_item_cull_mask = 2
-texture = ExtResource("5_pd8oe")
+metadata/player_id = 3
 
 [node name="How to play button" type="Button" parent="."]
 offset_left = 25.0
@@ -523,10 +275,4 @@ position = Vector2(175, 5)
 visible = false
 position = Vector2(175, 5)
 
-[connection signal="mouse_entered" from="Player Sign 1/Area2D" to="Player Sign 1" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Player Sign 1/Area2D" to="Player Sign 1" method="_on_area_2d_mouse_exited"]
-[connection signal="mouse_entered" from="Player Sign 2/Area2D" to="Player Sign 2" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Player Sign 2/Area2D" to="Player Sign 2" method="_on_area_2d_mouse_exited"]
-[connection signal="mouse_entered" from="Player Sign 3/Area2D" to="Player Sign 3" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Player Sign 3/Area2D" to="Player Sign 3" method="_on_area_2d_mouse_exited"]
 [connection signal="pressed" from="How to play button" to="." method="_on_how_to_play_pressed"]

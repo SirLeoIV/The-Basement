@@ -1,15 +1,31 @@
+@tool
 extends Sprite2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_node("Desciption").visible = false
+	var id = get_meta("player_id")
+	if id == null:
+		print("...")
+	get_node("Avatar Explorer").visible = false
+	get_node("Avatar Guardian").visible = false
+	get_node("Avatar Scolar").visible = false
+	if id == 1:
+		get_node("Avatar Explorer").visible = true
+	if id == 2:
+		get_node("Avatar Guardian").visible = true
+	if id == 3:
+		get_node("Avatar Scolar").visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
+func update(sanity: int, health: int, max_sanity: int, max_health: int):
+	get_node("Sanity").text = "SANITY: " + str(sanity) + "/" + str(max_sanity)
+	get_node("Health").text = "HEALTH: " + str(health) + "/" + str(max_health)
 
 func _on_area_2d_mouse_entered():
 	get_node("Desciption").visible = true

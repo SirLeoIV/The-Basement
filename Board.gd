@@ -16,7 +16,7 @@ func _ready():
 func init_game():
 	var p1 = get_node("Player 1")
 	players["Player 1"] = p1
-	p1.set_sign(get_parent().get_node("Player Sign 1"))
+	p1.set_sign(get_parent().get_node("Info Explorer"))
 	p1.light_strength = 4
 	p1.set_player_id(1)
 	p1.set_pos(Vector2i(7, 5))
@@ -29,7 +29,7 @@ func init_game():
 	
 	var p2 = get_node("Player 2")
 	players["Player 2"] = p2
-	p2.set_sign(get_parent().get_node("Player Sign 2"))
+	p2.set_sign(get_parent().get_node("Info Guardian"))
 	p2.set_player_id(2)
 	p2.set_pos(Vector2i(7, 4))
 	p2.set_orientation(Player.directions.DOWN)
@@ -41,7 +41,7 @@ func init_game():
 	
 	var p3 = get_node("Player 3")
 	players["Player 3"] = p3
-	p3.set_sign(get_parent().get_node("Player Sign 3"))
+	p3.set_sign(get_parent().get_node("Info Scolar"))
 	p3.set_player_id(3)
 	p3.set_pos(Vector2i(6, 4))
 	p3.set_orientation(Player.directions.LEFT)

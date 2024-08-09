@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 enum directions {LEFT, RIGHT, UP, DOWN}
@@ -21,7 +22,8 @@ var height = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_pos(pos)
+	#set_pos(pos)
+	set_player_id(get_meta("player_id"))
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,15 +53,17 @@ func set_player_id(id: int):
 		health = 6
 		max_sanity = 14
 		sanity = 14
-	update_sign()
+	if sign != null: sign.update(sanity, health, max_sanity, max_health)
+#	update_sign()
 
 
 func set_sign(sprite: Sprite2D):
 	sign = sprite
 
 func update_sign():
-	sign.get_node("Sanity").text = "SANITY: " + str(sanity) + "/" + str(max_sanity)
-	sign.get_node("Health").text = "HEALTH: " + str(health) + "/" + str(max_health)
+	if sign != null:
+		sign.get_node("Sanity").text = "SANITY: " + str(sanity) + "/" + str(max_sanity)
+		sign.get_node("Health").text = "HEALTH: " + str(health) + "/" + str(max_health)
 
 func get_lit_area():
 	var area = [pos]
