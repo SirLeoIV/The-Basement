@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Shadow-Alchemy"
-run/main_scene="res://window.tscn"
+run/main_scene="res://code/window.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://graphics/Monster.png"
+config/icon="res://assets/graphics/characters/Monster.png"
 
 [display]
 

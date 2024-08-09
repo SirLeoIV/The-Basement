@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://x4ctvne50jtd"]
+
+[ext_resource type="Script" path="res://code/board/Monster.gd" id="1_mk5gs"]
+[ext_resource type="Texture2D" uid="uid://dmlpquiweo03f" path="res://assets/graphics/characters/Monster.png" id="2_gdfjg"]
+[ext_resource type="Texture2D" uid="uid://2unpkxsmcguo" path="res://assets/graphics/light/light.png" id="3_kvcl4"]
+
+[node name="Monster" type="Node2D"]
+script = ExtResource("1_mk5gs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_gdfjg")
+
+[node name="Light" type="PointLight2D" parent="."]
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("3_kvcl4")
