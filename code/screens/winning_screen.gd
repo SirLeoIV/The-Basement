@@ -1,8 +1,8 @@
 extends Node2D
 
-var moves = 0
-var items = 0
-var players = 0
+var moves: int = 0
+var items: int = 0
+var players: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

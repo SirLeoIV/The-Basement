@@ -13,10 +13,13 @@ func _ready():
 	get_node("Avatar Scolar").visible = false
 	if id == 1:
 		get_node("Avatar Explorer").visible = true
+		get_node("Desciption/Label").text = "     The explorer! \nLeader of this adventure. \nHas a strong flashlight."
 	if id == 2:
 		get_node("Avatar Guardian").visible = true
+		get_node("Desciption/Label").text = "     The Guardian! \nStrong muscels. \nWeak mind."
 	if id == 3:
 		get_node("Avatar Scolar").visible = true
+		get_node("Desciption/Label").text = "     The scholar! \nKnows things \nDo not leave him alone!"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

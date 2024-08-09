@@ -137,100 +137,11 @@ func select(tile: Vector2i):
 func make_move():
 	increment_moves()
 	get_node("FloorGrid").selected = selected_player.pos
-	for i in items:
-		var item = items[i]
-		if item.hit(selected_player.pos):
-			item.retrieved = true
-			item.set_pos(Vector2i(-1, -1))
-			if item.type == Item.types.BOTTLE:
-				set_item_color(get_parent().get_node("Items-Sign/Item-bottle"))
-			elif item.type == Item.types.GLASS:
-				set_item_color(get_parent().get_node("Items-Sign/Gems"))
-			elif item.type == Item.types.RECIPE:
-				set_item_color(get_parent().get_node("Items-Sign/Recipe"))
-			
-	update_items()
-	
-	for monster in monsters:
-		var monster_visible = false
-		monster.visible = false
-		for p in players:
-			var player = players[p]
-			player.get_node("Hit Light").visible = false
-			for tile in player.get_lit_area():
-				if monster.pos.x == tile.x && monster.pos.y == tile.y:
-					monster_visible = true
-					monster.visible = true
-					player.sanity = player.sanity - 3
-		
-		if monster_visible == false:
-			var monster_hits = false
-			var player_hitting = null
-			for p in players:
-				if monster.hitting_player(players[p].prev_pos):
-					monster_hits = true
-					player_hitting = players[p]
-			if monster_hits:
-				if monster.hitting_player(player_hitting.pos):
-					#if player_hitting.can_move_there(monster.pos):
-						player_hitting.health = player_hitting.health - 1
-						player_hitting.update_sign()
-						player_hitting.get_node("Hit Light").visible = true
-					#else:
-					#	pass
-			else:
-				var target = monster.nearest_player(players)
-				var rng = RandomNumberGenerator.new().randi_range(0, 2)
-				for i in rng:
-					if !monster.hitting_player(target.pos):
-						monster.move_step_to_player(target.prev_pos)
-	
+	check_items()
 	for p in players:
-		var player = players[p]
-		#players[p].health = min(players[p].max_health, players[p].health + 1)
-		player.sanity = min(player.max_sanity, player.sanity + 1)
-		player.set_pos(player.pos)
-		player.update_sign()
-		if player.pos.x == 7 && player.pos.y == 2:
-			player.visible = false
-			player.set_pos(Vector2i(-1, -1))
-			# players.erase(p)
-			player.safe = true
-			player.sign.get_node("Selected").visible = false
-			player.sign.get_node("Safe").visible = true
-		else:
-			if player.sanity <= 0:
-				var pos = player.pos
-				player.visible = false
-				player.sign.get_node("Selected").visible = false
-				player.sign.get_node("Dead").visible = true
-				players.erase(p)
-				var Monster = load("res://code/board/monster.tscn")
-				var new_monster = Monster.instantiate()
-				monsters.append(new_monster)
-				add_child(new_monster)
-				new_monster.set_pos(pos)
-				new_monster.visible = false
-			if player.health <= 0:
-				var pos = player.pos
-				player.visible = false
-				player.sign.get_node("Selected").visible = false
-				player.sign.get_node("Dead").visible = true
-				players.erase(p)
-				var Skull = load("res://code/board/skull.tscn")
-				var skull = Skull.instantiate()
-				add_child(skull)
-				skull.set_position(player.position)
-			
-	for p in players:
-		for monster in monsters:
-			#monster.visible = false
-			for tile in players[p].get_lit_area():
-				if monster.pos.x == tile.x && monster.pos.y == tile.y:
-					#monster.visible = true
-					#print("monster!" + str(monster.pos))
-					pass
-			#monster.visible = true # TODO
+		players[p].get_node("Hit Light").visible = false
+	check_monsters()
+	check_players()
 	select(get_node("FloorGrid").selected)
 	
 	if players.size() == 0:
@@ -242,21 +153,124 @@ func make_move():
 			if !players[p].safe:
 				game_running = true
 		if !game_running:
-			visible = false
-			var win_sreen = get_parent().get_node("Winning Screen")
-			win_sreen.visible = true
-			win_sreen.moves = moves
-			win_sreen.players = players.size()
-			var items_retrieved = 0
-			for i in items:
-				if items[i].retrieved:
-					items_retrieved += 1
-			win_sreen.items = items_retrieved
-			win_sreen.calculate_score()
+			show_winning_screen()
 
 func increment_moves(i:int = 1):
 	moves = min(999, moves + i)
 	get_parent().get_node("Moves-Sign/MovesLabel").text = "Moves: " + str(moves)
+
+func check_items():
+	for i in items:
+		var item = items[i]
+		if item.hit(selected_player.pos):
+			item.retrieved = true
+			item.set_pos(Vector2i(-1, -1))
+			if item.type == Item.types.BOTTLE:
+				set_item_color(get_parent().get_node("Items-Sign/Item-bottle"))
+			elif item.type == Item.types.GLASS:
+				set_item_color(get_parent().get_node("Items-Sign/Gems"))
+			elif item.type == Item.types.RECIPE:
+				set_item_color(get_parent().get_node("Items-Sign/Recipe"))
+	update_items()
+
+func check_monsters():
+	for monster in monsters:
+		monster.visible = false
+		check_monster_visibility(monster)
+		if monster.visible == false:
+			check_monster_attack(monster)
+
+func check_monster_visibility(monster):
+	for p in players:
+		var player = players[p]
+		for tile in player.get_lit_area():
+			if monster.pos.x == tile.x && monster.pos.y == tile.y:
+				monster.visible = true
+				player.sanity = player.sanity - 3
+				player.update_sign()
+
+func check_monster_attack(monster):
+	var monster_hits = false
+	var player_hitting = null
+	for p in players:
+		if monster.hitting_player(players[p].prev_pos):
+			monster_hits = true
+			player_hitting = players[p]
+	if monster_hits:
+		perform_monster_hit(monster, player_hitting)
+	else:
+		monster_move_to_nearest_player(monster)
+
+func perform_monster_hit(monster, player_hitting):
+	if monster.hitting_player(player_hitting.pos):
+		player_hitting.health = player_hitting.health - 1
+		player_hitting.update_sign()
+		player_hitting.get_node("Hit Light").visible = true
+
+func monster_move_to_nearest_player(monster):
+	var target = monster.nearest_player(players)
+	var rng = randi_range(0, 2)
+	for i in rng:
+		if !monster.hitting_player(target.pos):
+			monster.move_step_to_player(target.prev_pos)
+
+func check_players():
+	for p in players:
+		var player = players[p]
+		player.sanity = min(player.max_sanity, player.sanity + 1)
+		player.set_pos(player.pos)
+		player.update_sign()
+		if player.pos.x == 7 && player.pos.y == 2: # top of the stairs
+			player_exits_basement(player)
+		else:
+			if player.sanity <= 0:
+				players.erase(p)
+				player_goes_insane(player)
+			if player.health <= 0:
+				players.erase(p)
+				player_dies(player)
+
+func player_exits_basement(player):
+	player.visible = false
+	player.set_pos(Vector2i(-1, -1))
+	player.safe = true
+	player.sign.get_node("Selected").visible = false
+	player.sign.get_node("Safe").visible = true
+
+func player_goes_insane(player):
+	var pos = player.pos
+	player.visible = false
+	player.sign.get_node("Selected").visible = false
+	player.sign.get_node("Dead").visible = true
+	var Monster = load("res://code/board/monster.tscn")
+	var new_monster = Monster.instantiate()
+	monsters.append(new_monster)
+	add_child(new_monster)
+	new_monster.set_pos(pos)
+	new_monster.visible = false
+
+func player_dies(player):
+	var pos = player.pos
+	player.visible = false
+	player.sign.get_node("Selected").visible = false
+	player.sign.get_node("Dead").visible = true
+	var Skull = load("res://code/board/skull.tscn")
+	var skull = Skull.instantiate()
+	add_child(skull)
+	skull.set_position(player.position)
+
+func show_winning_screen():
+	visible = false
+	var win_sreen = get_parent().get_node("Winning Screen")
+	win_sreen.visible = true
+	win_sreen.moves = moves
+	win_sreen.players = players.size()
+	var items_retrieved = 0
+	for i in items:
+		if items[i].retrieved:
+			items_retrieved += 1
+	win_sreen.items = items_retrieved
+	win_sreen.calculate_score()
 
 func set_item_gray(item: Sprite2D):
 	item.modulate = Color(0,0,0)

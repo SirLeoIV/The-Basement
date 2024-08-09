@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://k5sile8kou88"]
+[gd_scene load_steps=35 format=3 uid="uid://k5sile8kou88"]
 
 [ext_resource type="Texture2D" uid="uid://dpqni4e34wnsr" path="res://assets/graphics/Wall-Background.png" id="1_15v5v"]
 [ext_resource type="Script" path="res://code/main.gd" id="1_ow40h"]
@@ -18,7 +18,6 @@
 [ext_resource type="Script" path="res://code/board/Board.gd" id="11_vi0ud"]
 [ext_resource type="Script" path="res://code/board/Item.gd" id="15_ld5tn"]
 [ext_resource type="Script" path="res://code/board/floorGrid.gd" id="16_eukrl"]
-[ext_resource type="PackedScene" uid="uid://78cj2duvfo06" path="res://code/board/skull.tscn" id="17_7p25y"]
 [ext_resource type="PackedScene" uid="uid://x4ctvne50jtd" path="res://code/board/monster.tscn" id="17_pg8hj"]
 [ext_resource type="PackedScene" uid="uid://c1fwa3ykfbx03" path="res://code/controls.tscn" id="21_ulc12"]
 [ext_resource type="PackedScene" uid="uid://rysvqe6xyesh" path="res://code/screens/welcome_screen.tscn" id="22_3u1k4"]
@@ -220,10 +219,6 @@ position = Vector2(19, 18)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("6_uexrn")
 script = ExtResource("15_ld5tn")
-
-[node name="Skull" parent="Board" instance=ExtResource("17_7p25y")]
-visible = false
-position = Vector2(48, 48)
 
 [node name="Monster" parent="Board" instance=ExtResource("17_pg8hj")]
 position = Vector2(82.5, 44.5)
