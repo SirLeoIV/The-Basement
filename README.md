@@ -17,5 +17,5 @@ Play the game [here](https://sirleoiv.itch.io/the-basement)!
 * Game completely geveloped in Godot with GDScript
 * Graphics created in Aseprite
 * Repository can be used for educational puposes only!
-* One graphic that belngs to [mcgee](https://www.deviantart.com/someonecalledmgee) was used [link](https://www.deviantart.com/someonecalledmgee/art/Pixel-Wooden-Floor-Texture-736852960).
+* One graphic that belngs to [mcgee](https://www.deviantart.com/someonecalledmgee) was used ([link](https://www.deviantart.com/someonecalledmgee/art/Pixel-Wooden-Floor-Texture-736852960)).
 * All the other content is original and belongs to the original owner + creator [Sir Leo IV](https://github.com/SirLeoIV)!
