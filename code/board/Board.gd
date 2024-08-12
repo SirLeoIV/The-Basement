@@ -138,6 +138,7 @@ func make_move():
 	increment_moves()
 	get_node("FloorGrid").selected = selected_player.pos
 	check_items()
+	update_items()
 	for p in players:
 		players[p].get_node("Hit Light").visible = false
 	check_monsters()
@@ -160,9 +161,12 @@ func increment_moves(i:int = 1):
 	get_parent().get_node("Moves-Sign/MovesLabel").text = "Moves: " + str(moves)
 
 func check_items():
+	if selected_player.item : return
 	for i in items:
 		var item = items[i]
 		if item.hit(selected_player.pos):
+			selected_player.item = true
+			selected_player.update_sign()
 			item.retrieved = true
 			item.set_pos(Vector2i(-1, -1))
 			if item.type == Item.types.BOTTLE:
@@ -171,7 +175,6 @@ func check_items():
 				set_item_color(get_parent().get_node("Items-Sign/Gems"))
 			elif item.type == Item.types.RECIPE:
 				set_item_color(get_parent().get_node("Items-Sign/Recipe"))
-	update_items()
 
 func check_monsters():
 	for monster in monsters:

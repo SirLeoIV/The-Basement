@@ -15,6 +15,8 @@ var max_sanity: int = 10
 var health: int = 10
 var max_health: int = 10
 
+var item: bool = false
+
 var sign: Sprite2D
 
 var width = 13
@@ -53,17 +55,15 @@ func set_player_id(id: int):
 		health = 6
 		max_sanity = 14
 		sanity = 14
-	if sign != null: sign.update(sanity, health, max_sanity, max_health)
-#	update_sign()
-
+	if sign != null: sign.update_stats(sanity, health, max_sanity, max_health, item)
 
 func set_sign(sprite: Sprite2D):
 	sign = sprite
+	sign.set_player(self)
 
 func update_sign():
 	if sign != null:
-		sign.get_node("Sanity").text = "SANITY: " + str(sanity) + "/" + str(max_sanity)
-		sign.get_node("Health").text = "HEALTH: " + str(health) + "/" + str(max_health)
+		sign.update()
 
 func get_lit_area():
 	var area = [pos]
